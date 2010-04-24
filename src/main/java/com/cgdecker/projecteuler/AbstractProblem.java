@@ -4,6 +4,8 @@ import java.util.concurrent.Callable;
 
 /**
  * Abstract problem that gets its problem # from its name and implements {@link Callable}.
+ * Class name of implementations <i>must</i> be of the form "Problem#" where # is the
+ * problem number. 
  *
  * @author cgdecker@gmail.com (Colin Decker)
  */
@@ -20,7 +22,7 @@ public abstract class AbstractProblem<T> implements Problem<T> {
     return Integer.valueOf(number);
   }
 
-  public int getId() {
+  public final int getId() {
     return id;
   }
 

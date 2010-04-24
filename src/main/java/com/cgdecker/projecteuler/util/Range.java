@@ -3,7 +3,6 @@ package com.cgdecker.projecteuler.util;
 import java.util.Iterator;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterators;
 import com.google.common.primitives.Longs;

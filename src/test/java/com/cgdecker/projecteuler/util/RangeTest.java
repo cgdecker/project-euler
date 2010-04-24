@@ -27,18 +27,24 @@ public class RangeTest {
   public void rangesFrom1To4Contain1234() {
     assertRangeIs(ONE_TO_FOUR, 1, 2, 3, 4);
     assertRangeIs(FOUR_TO_ONE, 4, 3, 2, 1);
+    assertTrue(ONE_TO_FOUR.isAscending());
+    assertFalse(FOUR_TO_ONE.isAscending());
   }
 
   @Test
   public void rangeFromNeg1To2ContainNeg1012() {
     assertRangeIs(NEGATIVE_ONE_TO_TWO, -1, 0, 1, 2);
     assertRangeIs(TWO_TO_NEGATIVE_ONE, 2, 1, 0, -1);
+    assertTrue(NEGATIVE_ONE_TO_TWO.isAscending());
+    assertFalse(TWO_TO_NEGATIVE_ONE.isAscending());
   }
 
   @Test
   public void rangeFromNeg1ToNeg4ContainsNeg1234() {
     assertRangeIs(NEGATIVE_ONE_TO_NEGATIVE_FOUR, -1, -2, -3, -4);
     assertRangeIs(NEGATIVE_FOUR_TO_NEGATIVE_ONE, -4, -3, -2, -1);
+    assertTrue(NEGATIVE_FOUR_TO_NEGATIVE_ONE.isAscending());
+    assertFalse(NEGATIVE_ONE_TO_NEGATIVE_FOUR.isAscending());
   }
 
   @Test
@@ -58,12 +64,14 @@ public class RangeTest {
   public void singletonContainsOneValue() {
     assertRangeIs(SINGLETON, 1);
     assertEquals(Range.from(1).to(1), SINGLETON);
+    assertTrue(SINGLETON.isAscending());
   }
 
   @Test
   public void emptyRangeContainsNoValues() {
     assertRangeIs(Range.empty());
     assertEquals(Range.from(1).upTo(1), Range.empty());
+    assertTrue(Range.empty().isAscending());
   }
 
   private static void assertRangeIs(Range range, long... values) {

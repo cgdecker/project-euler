@@ -8,7 +8,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>colin-snapshot</version>
+      <version>r03</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

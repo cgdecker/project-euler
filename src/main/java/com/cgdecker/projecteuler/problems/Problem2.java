@@ -3,7 +3,6 @@ package com.cgdecker.projecteuler.problems;
 
 import java.util.Iterator;
 
-import com.cgdecker.projecteuler.AbstractProblem;
 import com.google.common.base.Predicate;
 import com.google.common.collect.AbstractIterator;
 

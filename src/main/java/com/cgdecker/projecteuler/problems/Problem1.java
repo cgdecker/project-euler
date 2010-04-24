@@ -1,9 +1,6 @@
 package com.cgdecker.projecteuler.problems;
 
 
-import com.cgdecker.projecteuler.AbstractProblem;
-
-
 public class Problem1 extends AbstractProblem<Integer> {
   public Integer solve() {
     int result = 0;

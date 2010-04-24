@@ -1,7 +1,5 @@
 package com.cgdecker.projecteuler.problems;
 
-import com.cgdecker.projecteuler.AbstractProblem;
-
 import static com.cgdecker.projecteuler.util.PrimeNumbers.primeNumbers;
 import static com.google.common.collect.Iterables.get;
 

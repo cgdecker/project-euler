@@ -3,7 +3,6 @@ package com.cgdecker.projecteuler.problems;
 
 import java.util.Set;
 
-import com.cgdecker.projecteuler.AbstractProblem;
 import com.google.common.collect.ImmutableSet;
 
 import static com.cgdecker.projecteuler.util.PrimeNumbers.isPrime;

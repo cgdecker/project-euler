@@ -1,6 +1,8 @@
-package com.cgdecker.projecteuler;
+package com.cgdecker.projecteuler.problems;
 
 import java.util.concurrent.Callable;
+
+import com.cgdecker.projecteuler.Problem;
 
 /**
  * Abstract problem that gets its problem # from its name and implements {@link Callable}.

@@ -14,8 +14,14 @@ import com.google.common.collect.Multiset.Entry;
 import static com.google.common.base.Preconditions.checkArgument;
 
 
+/**
+ * Prime factors. Allows the prime factors of a number to be
+ * determined using {@code PrimeFactors factors = PrimeFactors.of(number);}
+ * as well as representing the results.
+ *
+ * @author cgdecker@gmail.com (Colin Decker)
+ */
 public class PrimeFactors {
-
    /**
    * Finds the prime factors of the given number.
    *
@@ -60,16 +66,18 @@ public class PrimeFactors {
     throw new AssertionError();
   }
 
-
   private final ImmutableMultiset<Long> factors;
-
 
   private PrimeFactors(Multiset<Long> factors) {
     this.factors = ImmutableMultiset.copyOf(factors);
   }
 
-
-  public Long getOriginalValue() {
+  /**
+   * Gets the numeric value this is the prime factors of.
+   *
+   * @return the original value.
+   */
+  public long getOriginalValue() {
     long result = 1;
     for (Long factor : factors) {
       result *= factor;
@@ -77,16 +85,44 @@ public class PrimeFactors {
     return result;
   }
 
-
+  /**
+   * Gets the factors as an immutable multiset.
+   *
+   * @return the factors.
+   */
   public ImmutableMultiset<Long> getFactors() {
     return factors;
   }
 
+  /**
+   * Gets the count of the distinct prime factors. So for
+   * 2^2 x 3^2 x 5 this would be 3, despite there being 5
+   * total prime factors.
+   *
+   * @return count of the distinct factors.
+   */
+  public int countDistinct() {
+    return factors.entrySet().size();
+  }
 
+  /**
+   * Gets the count of the total prime factors. For
+   * 2^2 x 3^2 x 5 this would be 5.
+   *
+   * @return count of the total factors.
+   */
+  public int count() {
+    return factors.size();
+  }
+
+  /**
+   * Gets the greatest of the factors.
+   *
+   * @return the greatest factor.
+   */
   public Long greatest() {
     return Collections.max(factors);
   }
-
 
   @Override
   public boolean equals(Object obj) {
@@ -97,12 +133,10 @@ public class PrimeFactors {
     return false;
   }
 
-
   @Override
   public int hashCode() {
     return factors.hashCode();
   }
-
 
   @Override
   public String toString() {

@@ -1,6 +1,5 @@
 package com.cgdecker.projecteuler.problems;
 
-import com.cgdecker.projecteuler.AbstractProblem;
 import com.cgdecker.projecteuler.util.PrimeNumbers;
 
 

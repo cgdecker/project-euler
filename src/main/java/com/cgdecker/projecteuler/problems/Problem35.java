@@ -4,8 +4,6 @@ package com.cgdecker.projecteuler.problems;
 import java.util.List;
 import java.util.Set;
 
-import com.cgdecker.projecteuler.AbstractProblem;
-
 import static com.cgdecker.projecteuler.util.PrimeNumbers.isPrime;
 import static com.cgdecker.projecteuler.util.PrimeNumbers.primeNumbers;
 import static com.cgdecker.projecteuler.util.StringConversion.parseLong;

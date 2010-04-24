@@ -31,7 +31,6 @@ public class PrimeNumbers {
     }
   }
 
-
   /**
    * Determines whether or not the given number is prime.
    *
@@ -62,7 +61,6 @@ public class PrimeNumbers {
     return true;
   }
 
-
   /**
    * The sequence of prime numbers, starting at 2. Will effectively iterate forever (until it reaches {@code
    * Long.MAX_VALUE}) and will take longer as the numbers get higher, so you should be sure to terminate it yourself
@@ -73,7 +71,6 @@ public class PrimeNumbers {
   public static Iterable<Long> primeNumbers() {
     return PRIME_NUMBER_SEQUENCE;
   }
-
 
   /**
    * Gets a predicate that determines whether a number is prime.

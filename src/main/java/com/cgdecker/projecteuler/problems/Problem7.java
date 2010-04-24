@@ -1,17 +1,15 @@
 package com.cgdecker.projecteuler.problems;
 
-import com.cgdecker.projecteuler.Problem;
-import com.cgdecker.projecteuler.util.Maths;
+import com.cgdecker.projecteuler.AbstractProblem;
+import com.cgdecker.projecteuler.util.PrimeNumbers;
 import com.google.common.collect.Iterables;
 
-
-public class Problem7 implements Problem<Long> {
-  public int getId() {
-    return 7;
-  }
+import static com.cgdecker.projecteuler.util.PrimeNumbers.primeNumbers;
+import static com.google.common.collect.Iterables.get;
 
 
+public class Problem7 extends AbstractProblem<Long> {
   public Long solve() {
-    return Iterables.get(Maths.primeNumbers(), 10001);
+    return get(primeNumbers(), 10001);
   }
 }

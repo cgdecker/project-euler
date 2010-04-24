@@ -1,20 +1,16 @@
 package com.cgdecker.projecteuler.problems;
 
 
-import static com.google.common.collect.Iterables.filter;
-
 import java.util.Iterator;
 
-import com.cgdecker.projecteuler.Problem;
+import com.cgdecker.projecteuler.AbstractProblem;
 import com.google.common.base.Predicate;
 import com.google.common.collect.AbstractIterator;
 
+import static com.google.common.collect.Iterables.filter;
 
-public class Problem2 implements Problem<Long> {
-  public int getId() {
-    return 2;
-  }
 
+public class Problem2 extends AbstractProblem<Long> {
   public Long solve() {
     long result = 0;
     for (long evenFibonacciNumber : filter(FIBONACCI_SEQUENCE, EVEN_NUMBERS)) {
@@ -41,7 +37,6 @@ public class Problem2 implements Problem<Long> {
       return new FibonacciSequenceGenerator();
     }
   };
-
 
   /**
    * Iterator that generates the numbers of the Fibonacci sequence.

@@ -1,15 +1,10 @@
 package com.cgdecker.projecteuler.problems;
 
-import com.cgdecker.projecteuler.Problem;
-import com.cgdecker.projecteuler.util.Maths;
+import com.cgdecker.projecteuler.AbstractProblem;
 import com.cgdecker.projecteuler.util.PrimeNumbers;
 
 
-public class Problem10 implements Problem<Long> {
-  public int getId() {
-    return 10;
-  }
-
+public class Problem10 extends AbstractProblem<Long> {
   public Long solve() {
     long result = 0;
     for (Long prime : PrimeNumbers.primeNumbers()) {

@@ -1,28 +1,23 @@
 package com.cgdecker.projecteuler.problems;
 
 
-import static com.cgdecker.projecteuler.util.Maths.primeNumbers;
+import java.util.Set;
+
+import com.cgdecker.projecteuler.AbstractProblem;
+import com.google.common.collect.ImmutableSet;
+
+import static com.cgdecker.projecteuler.util.PrimeNumbers.isPrime;
+import static com.cgdecker.projecteuler.util.PrimeNumbers.primeNumbers;
 import static com.cgdecker.projecteuler.util.StringConversion.parseLong;
 import static com.cgdecker.projecteuler.util.Strings.leftAndRightTruncatedPermutations;
 import static com.google.common.collect.Collections2.transform;
-
-import java.util.Set;
-
-import com.cgdecker.projecteuler.Problem;
-import com.cgdecker.projecteuler.util.Maths;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
+import static com.google.common.collect.Sets.newHashSet;
 
 
-public class Problem37 implements Problem<Long> {
-  public int getId() {
-    return 37;
-  }
-
-
+public class Problem37 extends AbstractProblem<Long> {
   public Long solve() {
-    Set<Long> matches = Sets.newHashSet();
-    Set<Long> misses = Sets.newHashSet();
+    Set<Long> matches = newHashSet();
+    Set<Long> misses = newHashSet();
 
     for (Long prime : primeNumbers()) {
       if (!matches.contains(prime) && !misses.contains(prime)) {
@@ -32,7 +27,7 @@ public class Problem37 implements Problem<Long> {
 
         boolean allPrimes = true;
         for (Long value : permutations) {
-          if (!prime.equals(value) && !Maths.isPrime(value)) {
+          if (!prime.equals(value) && !isPrime(value)) {
             allPrimes = false;
             misses.addAll(permutations);
             break;

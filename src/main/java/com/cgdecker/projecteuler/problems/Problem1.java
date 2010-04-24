@@ -1,14 +1,10 @@
 package com.cgdecker.projecteuler.problems;
 
 
-import com.cgdecker.projecteuler.Problem;
+import com.cgdecker.projecteuler.AbstractProblem;
 
 
-public class Problem1 implements Problem<Integer> {
-  public int getId() {
-    return 1;
-  }
-
+public class Problem1 extends AbstractProblem<Integer> {
   public Integer solve() {
     int result = 0;
     for (int i = 0; i < 1000; i++) {

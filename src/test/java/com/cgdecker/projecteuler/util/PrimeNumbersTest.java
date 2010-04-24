@@ -12,7 +12,6 @@ public class PrimeNumbersTest {
       89l, 97l, 101l, 103l, 107l, 109l, 113l, 127l, 131l, 137l, 139l, 149l, 151l, 157l, 163l, 167l,
       173l, 179l, 181l, 191l, 193l, 197l, 199l);
 
-
   @Test
   public void isPrimeMatchesAllPrimeNumbersUpTo200() {
     for (long i = 0; i <= 200; i++) {

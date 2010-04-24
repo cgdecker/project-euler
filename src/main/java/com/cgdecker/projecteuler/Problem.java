@@ -1,8 +1,9 @@
 package com.cgdecker.projecteuler;
 
-public interface Problem<T> {
-  int getId();
+import java.util.concurrent.Callable;
 
+public interface Problem<T> extends Callable<T> {
+  int getId();
 
   T solve();
 }

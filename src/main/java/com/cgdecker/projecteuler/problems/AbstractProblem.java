@@ -11,7 +11,7 @@ import com.cgdecker.projecteuler.Problem;
  *
  * @author cgdecker@gmail.com (Colin Decker)
  */
-public abstract class AbstractProblem<T> implements Problem<T> {
+abstract class AbstractProblem<T> implements Problem<T> {
   private final int id;
 
   public AbstractProblem() {

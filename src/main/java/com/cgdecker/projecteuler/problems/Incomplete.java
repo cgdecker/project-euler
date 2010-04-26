@@ -12,6 +12,6 @@ import static java.lang.annotation.ElementType.TYPE;
  */
 @Target(TYPE)
 @Documented
-public @interface Incomplete {
+@interface Incomplete {
   public String value() default "";
 }

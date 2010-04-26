@@ -9,7 +9,7 @@ import static com.google.common.collect.Iterables.filter;
 /**
  * @author cgdecker@gmail.com (Colin Decker)
  */
-@Incomplete
+@Incomplete("obvious bad solution, need to write pandigital iterator")
 public class Problem41 extends AbstractProblem<Long> {
   private static final long LARGEST_POSSIBLE_PANDIGITAL = 987654321L;
   private static final Range POSSIBLE_RANGE = Range.from(LARGEST_POSSIBLE_PANDIGITAL).to(2);

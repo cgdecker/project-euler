@@ -17,7 +17,6 @@ public class Problem41 extends AbstractProblem<Long> {
 
   public Long solve() {
     for(Long prime : PRIMES_IN_RANGE) {
-      System.out.println("Checking " + prime);
       if(Numbers.isPandigital(prime))
         return prime;
     }

@@ -1,13 +1,12 @@
 package com.cgdecker.projecteuler;
 
 import java.io.PrintStream;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import com.cgdecker.projecteuler.util.time.Stopwatch;
 import com.google.common.base.Throwables;
+import com.google.common.util.concurrent.TimeLimiter;
+import com.google.common.util.concurrent.UncheckedTimeoutException;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
@@ -18,13 +17,13 @@ import com.google.inject.Provider;
  * @author cgdecker@gmail.com (Colin Decker)
  */
 public class ProblemRunner {
-  private final ExecutorService executor;
+  private final TimeLimiter timeLimiter;
   private final Provider<Stopwatch> stopwatchProvider;
   private final PrintStream output;
 
-  @Inject public ProblemRunner(ExecutorService executor, Provider<Stopwatch> stopwatchProvider,
+  @Inject public ProblemRunner(TimeLimiter timeLimiter, Provider<Stopwatch> stopwatchProvider,
                                PrintStream output) {
-    this.executor = executor;
+    this.timeLimiter = timeLimiter;
     this.stopwatchProvider = stopwatchProvider;
     this.output = output;
   }
@@ -34,17 +33,16 @@ public class ProblemRunner {
     output.println("Running problem " + problem.getId() + "...");
     Stopwatch stopwatch = stopwatchProvider.get();
 
+    Problem<?> timeLimitedProblem = timeLimiter.newProxy(problem, Problem.class, 1,
+        TimeUnit.MINUTES);
     stopwatch.start();
-    Future<?> resultFuture = executor.submit(problem);
-
     try {
-      Object result = resultFuture.get(1, TimeUnit.MINUTES);
+      Object result = timeLimitedProblem.solve();
       stopwatch.stop();
 
       output.println("   Result: " + result);
       output.println("   Took " + stopwatch.getElapsedTimeMillis() + "ms to solve.\n");
-    }
-    catch (TimeoutException e) {
+    } catch (UncheckedTimeoutException e) {
       output.println("   Failed to get a result in one minute.");
     }
     catch (Exception e) {

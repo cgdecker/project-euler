@@ -23,11 +23,13 @@ public class Range implements Iterable<Long> {
   private final long from;
   private final long to;
 
+  private final Direction direction;
   private final boolean empty;
 
   private Range(long from, long to) {
     this.from = from;
     this.to = to;
+    this.direction = Direction.of(from, to);
     this.empty = false;
   }
 
@@ -37,6 +39,7 @@ public class Range implements Iterable<Long> {
   private Range() {
     this.from = 0;
     this.to = 0;
+    this.direction = Direction.ASCENDING;
     this.empty = true;
   }
 
@@ -70,6 +73,23 @@ public class Range implements Iterable<Long> {
     return EMPTY;
   }
 
+  /**
+   * Gets the value this range starts at.
+   *
+   * @return the value the range starts at.
+   */
+  public long getFrom() {
+    return from;
+  }
+
+  /**
+   * Gets the value this range goes to (the last number within the range).
+   *
+   * @return the value the range ends at.
+   */
+  public long getTo() {
+    return to;
+  }
 
   /**
    * Gets whether or not the given value is within this range.
@@ -118,11 +138,11 @@ public class Range implements Iterable<Long> {
    *         otherwise.
    */
   public boolean isAscending() {
-    return to >= from;
+    return direction == Direction.ASCENDING;
   }
 
   public Iterator<Long> iterator() {
-    return empty ? Iterators.<Long>emptyIterator() : new RangeIterator(from, to);
+    return empty ? Iterators.<Long>emptyIterator() : new RangeIterator(from, to, direction);
   }
 
   public static class RangeBuilder {
@@ -194,17 +214,14 @@ public class Range implements Iterable<Long> {
    * @author Colin Decker
    */
   private static class RangeIterator extends AbstractIterator<Long> {
-    private Long current;
-    private final Long increment;
-    private final Long end;
+    private long current;
+    private final Direction direction;
+    private final long end;
 
-    RangeIterator(Long from, Long to) {
+    RangeIterator(long from, long to, Direction direction) {
       this.current = from;
-
-      boolean ascending = to.compareTo(from) >= 0;
-
-      this.increment = ascending ? 1L : -1L;
-      this.end = to + increment;
+      this.direction = direction;
+      this.end = direction.next(to);
     }
 
     @Override
@@ -212,13 +229,39 @@ public class Range implements Iterable<Long> {
       if (isAtEnd())
         return endOfData();
 
-      Long result = current;
-      current = current + increment;
+      long result = current;
+      current = direction.next(current);
       return result;
     }
 
     private boolean isAtEnd() {
-      return current.equals(end);
+      return current == end;
+    }
+  }
+
+  /**
+   * Direction of a range.
+   */
+  public enum Direction {
+    /** Values from less to greater. */
+    ASCENDING(1l),
+    /** Values from greater to less. */
+    DESCENDING(-1l);
+
+    private final long increment;
+
+    private Direction(long increment) {
+      this.increment = increment;
+    }
+
+    long next(long value) {
+      return value + increment;
+    }
+
+    static Direction of(long from, long to) {
+      if(to >= from)
+        return ASCENDING;
+      return DESCENDING;
     }
   }
 }
